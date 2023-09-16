@@ -1,5 +1,7 @@
 package in.wordofgod.bible.parser;
 
+import java.io.IOException;
+
 import in.wordofgod.bible.parser.vosgson.Book;
 import in.wordofgod.bible.parser.vosgson.Chapter;
 import in.wordofgod.bible.parser.vosgson.Verse;
@@ -34,7 +36,13 @@ public class BibleParserTest {
 
 	private static void loadTheWordBible() {
 		System.out.println("Started Loading TheWord Bible");
-		Bible bible = TheWord.getBible(theWordBibleFilePath, bibleInfoFilePath);
+		Bible bible = null;
+		try {
+			bible = TheWord.getBible(theWordBibleFilePath, bibleInfoFilePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 		for (Book book : bible.getBooks()) {
 			for (Chapter chapter : book.getChapters()) {
 				for (Verse verse : chapter.getVerses()) {

@@ -43,14 +43,14 @@ public class TheWord {
 
 	private static int warningCount = 0;
 
-	public static Bible getBible(String bibleFilePath, String bibleInfoFilePath) {
+	public static Bible getBible(String bibleFilePath, String bibleInfoFilePath) throws IOException {
 		File inputFile = new File(bibleFilePath);
 		Properties bibleInfo = loadBookInfo(bibleInfoFilePath);
 		Bible bible = getBible(inputFile, bibleInfo);
 		return bible;
 	}
 
-	private static Bible getBible(File inputFile, Properties bibleInfo) {
+	private static Bible getBible(File inputFile, Properties bibleInfo) throws IOException {
 
 		Bible bible = new Bible();
 		loadBibleInfo(bible, bibleInfo);
@@ -126,10 +126,13 @@ public class TheWord {
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			throw e;
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return bible;
 	}
