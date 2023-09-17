@@ -32,7 +32,7 @@ public class TheWord {
 
 	private static final BookID[] BOOK_ORDER = new BookID[66];
 
-	private static final Set<BookID> COVERED_BOOKS = EnumSet.noneOf(BookID.class);
+	public static final Set<BookID> COVERED_BOOKS = EnumSet.noneOf(BookID.class);
 
 	static {
 		for (int i = 0; i < BOOK_ORDER.length; i++) {
@@ -70,7 +70,8 @@ public class TheWord {
 					continue;
 				Book bk = new Book(bid.getOsisID(), bibleInfo.getProperty("book.name." + bookCount),
 						bibleInfo.getProperty("book.short.name." + bookCount),
-						bibleInfo.getProperty("book.english.name." + bookCount), new ArrayList<Chapter>());
+						bibleInfo.getProperty("book.english.name." + bookCount), bid.getThreeLetterCode(),
+						new ArrayList<Chapter>());
 				bk.setBookNo(bookCount);
 				bookCount++;
 				// Book bk = new Book(bid.getOsisID(), bid, bid.getEnglishName(),

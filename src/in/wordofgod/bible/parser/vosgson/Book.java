@@ -41,6 +41,10 @@ public class Book {
 	@Expose
 	private String englishName;
 
+	@SerializedName("threeLetterCode")
+	@Expose
+	private String threeLetterCode;
+
 	@SerializedName("chapters")
 	@Expose
 	private List<Chapter> chapters = new ArrayList<Chapter>();
@@ -109,6 +113,15 @@ public class Book {
 		this.longName = longName;
 		this.shortName = shortName;
 		this.englishName = englishName;
+		this.chapters = chapters;
+	}
+	
+	public Book(String osisID, String longName, String shortName, String englishName, String threeLetterCode, ArrayList<Chapter> chapters) {
+		this.bookId = osisID;
+		this.longName = longName;
+		this.shortName = shortName;
+		this.englishName = englishName;
+		this.threeLetterCode = threeLetterCode;
 		this.chapters = chapters;
 	}
 
@@ -187,6 +200,20 @@ public class Book {
 	 */
 	public void setEnglishName(String englishName) {
 		this.englishName = englishName;
+	}
+
+	/**
+	 * @return the threeLetterCode
+	 */
+	public String getThreeLetterCode() {
+		return threeLetterCode;
+	}
+
+	/**
+	 * @param threeLetterCode the threeLetterCode to set
+	 */
+	public void setThreeLetterCode(String threeLetterCode) {
+		this.threeLetterCode = threeLetterCode;
 	}
 
 }
