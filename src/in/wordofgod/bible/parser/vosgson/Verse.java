@@ -13,6 +13,11 @@ public class Verse extends FormattedText {
 	@SerializedName("text")
 	@Expose
 	private String text;
+	
+	@SerializedName("unParsedText")
+	@Expose
+	private String unParsedText;
+	
 
 	/**
 	 * No args constructor for use in serialization
@@ -62,5 +67,19 @@ public class Verse extends FormattedText {
 	 */
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	/**
+	 * @return the unParsedText
+	 */
+	public String getUnParsedText() {
+		return unParsedText;
+	}
+
+	/**
+	 * @param unParsedText the unParsedText to set
+	 */
+	public void setUnParsedText(String unParsedText) {
+		this.unParsedText = unParsedText;
 	}
 }

@@ -91,6 +91,7 @@ public class TheWord {
 						line = line.replaceAll("  +", " ").trim();
 						hasVerses = true;
 						Verse v = new Verse("" + vnumber);
+						v.setUnParsedText(line);
 						if (line.contains("<WH") || line.contains("<WG")) {
 							Matcher m = Pattern.compile("(<FI>[^<>]*<Fi>|<FO>[^<>]*<Fo>|[^<> ]*)((<W[GH][0-9]+>)+)")
 									.matcher(line.replaceFirst("^(<W[GH][0-9]+x>)+", ""));
