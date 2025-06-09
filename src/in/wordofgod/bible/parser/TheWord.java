@@ -84,6 +84,9 @@ public class TheWord {
 					int maxVerse = verseCount[cnumber - 1];
 					for (int vnumber = 1; vnumber <= maxVerse; vnumber++) {
 						String line = br.readLine();
+						if(line==null) {
+							line = "[Not avaiable in this version, check previous verse or next verse]";
+						}
 						if (line.startsWith("\uFEFF"))
 							line = line.substring(1);
 						if (line.equals("- - -") || line.trim().length() == 0)
