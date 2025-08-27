@@ -58,12 +58,16 @@ public class TheWord {
 		boolean hasOT = true, hasNT = true;
 		if (inputFile.getName().toLowerCase().endsWith(".ot")) {
 			hasNT = false;
+			bible.setHasNT(false);
 		} else if (inputFile.getName().toLowerCase().endsWith(".nt")) {
 			hasOT = false;
+			bible.setHasOT(false);
 		}
 
 		warningCount = 0;
 		int bookCount = 1;
+		int totalChaptersCount = 1;
+		int totalVersesCount = 1;
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile), "UTF-8"))) {
 			for (BookID bid : BOOK_ORDER) {
 				if ((bid.isNT() && !hasNT) || (!bid.isNT() && !hasOT))
@@ -80,11 +84,12 @@ public class TheWord {
 				for (int cnumber = 1; cnumber <= verseCount.length; cnumber++) {
 					Chapter ch = new Chapter();
 					ch.setChapter("" + cnumber);
+					totalChaptersCount++;
 					boolean hasVerses = false;
 					int maxVerse = verseCount[cnumber - 1];
 					for (int vnumber = 1; vnumber <= maxVerse; vnumber++) {
 						String line = br.readLine();
-						if(line==null) {
+						if (line == null) {
 							line = "[Not avaiable in this version, check previous verse or next verse]";
 						}
 						if (line.startsWith("\uFEFF"))
@@ -116,6 +121,7 @@ public class TheWord {
 						v.setText(line);
 						v.finished();
 						ch.getVerses().add(v);
+						totalVersesCount++;
 					}
 					if (hasVerses) {
 						while (bk.getChapters().size() < cnumber - 1) {
@@ -129,6 +135,9 @@ public class TheWord {
 				if (bk.getChapters().size() > 0)
 					bible.getBooks().add(bk);
 			}
+			bible.setTotalBooks(bookCount);
+			bible.setTotalChapters(totalChaptersCount);
+			bible.setTotalVerses(totalVersesCount);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			throw e;
@@ -314,6 +323,7 @@ public class TheWord {
 		bible.setPublishedBy(bibleInfo.getProperty("bible.info.publishedBy"));
 		bible.setTranslatedBy(bibleInfo.getProperty("bible.info.translatedBy"));
 		bible.setCopyRight(bibleInfo.getProperty("bible.info.copyRight"));
+		bible.setAdditionalInformation(bibleInfo.getProperty("bible.info.additionalInformation"));
 		return bible;
 	}
 

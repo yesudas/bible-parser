@@ -25,11 +25,14 @@ public class Bible {
 	private String publishedBy;
 	private String translatedBy;
 	private String copyRight;
+	private String additionalInformation;
 	private int totalBooks;
 	private int totalChapters;
 	private int totalVerses;
 	private int totalWords;
 	private int totalUniqueWords;
+	private boolean hasOT = true;
+	private boolean hasNT = true;
 	
 	private List<Book> books = new ArrayList<>();
 	private List<BookName> bookNames = new ArrayList<BookName>();
@@ -280,6 +283,48 @@ public class Bible {
 	 */
 	public void setBookNames(List<BookName> bookNames) {
 		this.bookNames = bookNames;
+	}
+
+	/**
+	 * @return the additionalInformation
+	 */
+	public String getAdditionalInformation() {
+		return additionalInformation;
+	}
+
+	/**
+	 * @param additionalInformation the additionalInformation to set
+	 */
+	public void setAdditionalInformation(String additionalInformation) {
+		this.additionalInformation = additionalInformation;
+	}
+
+	/**
+	 * @return the hasNT
+	 */
+	public boolean isHasNT() {
+		return hasNT;
+	}
+
+	/**
+	 * @param hasNT the hasNT to set
+	 */
+	public void setHasNT(boolean hasNT) {
+		this.hasNT = hasNT;
+	}
+
+	/**
+	 * @return the hasOT
+	 */
+	public boolean isHasOT() {
+		return hasOT;
+	}
+
+	/**
+	 * @param hasOT the hasOT to set
+	 */
+	public void setHasOT(boolean hasOT) {
+		this.hasOT = hasOT;
 	}
 
 }
